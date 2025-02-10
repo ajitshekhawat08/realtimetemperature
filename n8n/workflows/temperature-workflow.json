@@ -1,0 +1,32 @@
+{
+    "nodes": [
+      {
+        "parameters": {
+          "url": "http://backend:5000/store-temperature",
+          "method": "POST",
+          "jsonParameters": true,
+          "bodyParametersJson": "{ \"value\": \"={{Math.random() * 10 + 20}}\" }"
+        },
+        "name": "Send Temperature Data",
+        "type": "n8n-nodes-base.httpRequest",
+        "typeVersion": 1,
+        "position": [450, 300]
+      },
+      {
+        "parameters": {
+          "interval": 5,
+          "unit": "seconds"
+        },
+        "name": "Trigger Every 5 Seconds",
+        "type": "n8n-nodes-base.interval",
+        "typeVersion": 1,
+        "position": [250, 300]
+      }
+    ],
+    "connections": {
+      "Trigger Every 5 Seconds": {
+        "main": [[{ "node": "Send Temperature Data", "type": "main", "index": 0 }]]
+      }
+    }
+  }
+  
